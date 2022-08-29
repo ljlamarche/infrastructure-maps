@@ -12,7 +12,7 @@ import cartopy.feature as cfeature
 
 from instrumentation import *
 
-def map():
+def NSF_facilities():
 
     fig = plt.figure(figsize=(10,10))
     gs = gridspec.GridSpec(1,1)
@@ -90,10 +90,40 @@ def map():
 
 
 
+def ASI_networks():
+
+
+    fig = plt.figure(figsize=(10,10))
+    gs = gridspec.GridSpec(1,1)
+    gs.update(left=0.05,right=0.95,bottom=0.05,top=0.9,hspace=0.1)
+    ax = plt.subplot(gs[0],projection=ccrs.Orthographic(central_longitude=-90,central_latitude=15))
+    # ax = plt.subplot(gs[0],projection=ccrs.LambertConformal(central_longitude=-110,central_latitude=45))
+    ax.set_extent([-125, -55, -80, 80], crs=ccrs.PlateCarree())
+    ax.coastlines(resolution='50m',zorder=2)
+    ax.gridlines()
+    ax.background_img(name='BM',resolution='mid')
+
+    mango = ASINetwork('MANGO', label='MANGO airglow imaging Network', elev=15., color='orange', alt=250)
+    green = ASINetwork('GREEN', label='Future MANGO airglow imagers', elev=15., color='lightgreen', alt=100)
+    alaska = ASINetwork('ALASKA', label='Alaska auroral imagers', elev=15., color='lightblue', alt=250)
+    themis = ASINetwork('THEMIS', label='THEMIS All-sky Imager Array', elev=15., color='violet', alt=100)
+    rego = ASINetwork('REGO', label='REGO all-sky airglow/auroral imagers', elev=15., color='dodgerblue', alt=250)
+    bu = ASINetwork('BU', label='Boston University all-sky imagers', elev=15., color='crimson', alt=250)
+    for network in [mango, green, alaska, themis, rego, bu]:
+        for cam in network.sites:
+            ax.plot(cam.lon, cam.lat, color=network.color, label=network.label, linewidth=1.5, zorder=6.5, transform=ccrs.Geodetic())
+
+    # ax.legend()
+
+
+    plt.savefig('ASI_map.png')
+#     plt.show()
+
 
 
 def main():
-    map()
+    NSF_facilities()
+    ASI_networks()
 
 if __name__ == '__main__':
     main()
