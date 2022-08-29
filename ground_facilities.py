@@ -4,6 +4,7 @@
 import numpy as np
 import datetime as dt
 import pymap3d as pm
+import os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -16,7 +17,7 @@ import cartopy.feature as cfeature
 
 class ASINetwork(object):
     def __init__(self, network, label=None, elev=None, color=None, alt=None):
-        filename = network+'_sites.txt'
+        filename = os.path.join(os.path.dirname(__file__), 'site_data', '{}_sites.txt'.format(network))
         sites = np.loadtxt(filename)
         self.label = label
         self.color = color
@@ -54,7 +55,7 @@ class AMISR(object):
         self.lat, self.lon = self.generate_fov(az, el)
 
     def load_data(self, radar):
-        filename = radar.replace('-','').lower()+'GratingLimits.txt'
+        filename = os.path.join(os.path.dirname(__file__), 'site_data', '{}GratingLimits.txt'.format(radar.replace('-','').lower()))
         data = np.loadtxt(filename)
         az = data[:,0]*np.pi/180.
         el = data[:,1]*np.pi/180.
@@ -84,7 +85,7 @@ class SuperMAG(object):
     def __init__(self, color=None, label=None):
         self.color = color
         self.label = label
-        filename = 'SuperMAG_sites.txt'
+        filename = os.path.join(os.path.dirname(__file__), 'site_data', 'SuperMAG_sites.txt')
         data = np.loadtxt(filename,skiprows=44,usecols=(1,2))
         self.sites = np.array([data[:,1],data[:,0],np.zeros(data.shape[0])]).T
 
