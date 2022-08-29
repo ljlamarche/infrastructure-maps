@@ -85,7 +85,7 @@ def NSF_facilities():
         ax.text(np.mean(radar.lon), np.mean(radar.lat), radar.label, color='k', weight='heavy', horizontalalignment='center', verticalalignment='center', zorder=6.5, transform=ccrs.Geodetic())
 
 
-    plt.savefig('NSF_facilities.png')
+    plt.savefig('NSF_facilities.png', bbox_inches='tight')
 #     plt.show()
 
 
@@ -123,7 +123,7 @@ def ASI_networks():
 
 def main():
     NSF_facilities()
-    ASI_networks()
+    # ASI_networks()
 
 if __name__ == '__main__':
     main()
