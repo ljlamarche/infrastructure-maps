@@ -9,7 +9,7 @@ import pydarn
 class ASINetwork(object):
     def __init__(self, network, label=None, elev=None, color=None, alt=None):
         filename = os.path.join(os.path.dirname(__file__), 'site_data', '{}_sites.txt'.format(network))
-        sites = np.loadtxt(filename)
+        sites = np.loadtxt(filename, ndmin=2)
         self.label = label
         self.color = color
 
@@ -29,6 +29,33 @@ class ASI(object):
     def generate_fov(self, elev, alt):
         az = np.linspace(0., 360., 50)*np.pi/180.
         el = np.full(50, elev)*np.pi/180.
+        lat, lon, alt = projected_beam(self.site_lat, self.site_lon, self.site_alt, az, el, proj_alt=alt)
+        return lat[::-1], lon[::-1]
+
+
+class FPINetwork(object):
+    def __init__(self, network, label=None, elev=None, color=None, alt=None):
+        filename = os.path.join(os.path.dirname(__file__), 'site_data', '{}_sites.txt'.format(network))
+        sites = np.loadtxt(filename, ndmin=2)
+        self.label = label
+        self.color = color
+
+        self.sites = [FPI(site[0], site[1], site[2], elev, color, alt) for site in sites]
+
+class FPI(object):
+    
+    def __init__(self, site_lat, site_lon, site_alt, elev, color, alt):
+        self.site_lat = site_lat
+        self.site_lon = site_lon
+        self.site_alt = site_alt
+        self.color = color
+        # self.elev = elev
+
+        self.lat, self.lon = self.generate_beams(elev, alt)
+
+    def generate_beams(self, elev, alt):
+        az = np.arange(0., 360., 90.)*np.pi/180.
+        el = np.full(4, elev)*np.pi/180.
         lat, lon, alt = projected_beam(self.site_lat, self.site_lon, self.site_alt, az, el, proj_alt=alt)
         return lat[::-1], lon[::-1]
 
