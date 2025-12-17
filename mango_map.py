@@ -6,6 +6,7 @@ import pymap3d as pm
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+import yaml
 
 # Specify where to find cartopy backgrounds locally
 # THIS WILL HAVE TO BE CHANGED FOR EACH USER
@@ -28,65 +29,68 @@ output_figure = 'ASI_map.png'
 #   there to potentially identify individual sites in the future, or just to 
 #   better keep track of which site different coordinates correspond to.
 
-# Define ASI Networks
-asi_groups = [
-    {'name': 'Former MANGO imagers',
-    'type': 'ASI',
-    'elev': 15.,
-    'alt' : 250.,
-    'color': 'darkgrey',
-    'sites': [{'name': 'A' , 'glat': 40.80,  'glon': -121.46},
-              {'name': 'A' , 'glat': 38.11,  'glon':  -96.09},
-              {'name': 'A' , 'glat': 33.29,  'glon':  -89.38},
-              {'name': 'A' , 'glat': 45.34,  'glon': -108.91}]
-    },
-    {'name': 'MANGO airglow redline',
-     'elev': 15.,
-     'alt' : 250.,
-     'color': 'tomato',
-     'sites': [{'name': 'A' , 'glat': 43.27,  'glon': -120.35},
-               {'name': 'B' , 'glat': 38.15,  'glon': -111.18},
-               {'name': 'C' , 'glat': 41.88,  'glon':  -91.50},
-               {'name': 'D' , 'glat': 35.20,  'glon':  -82.87},
-               {'name': 'E' , 'glat': 48.15,  'glon':  -97.66},
-               {'name': 'F' , 'glat': 37.61,  'glon':  -97.61}]
-    },
-    {'name': 'MANGO airglow greenline',
-     'elev': 15.,
-     'alt' : 95.,
-     'color': 'lightgreen',
-     'sites': [{'name': 'A' , 'glat': 43.27,  'glon': -120.35},
-               {'name': 'B' , 'glat': 38.15,  'glon': -111.18},
-               {'name': 'C' , 'glat': 41.60,  'glon': -111.60},
-               {'name': 'D' , 'glat': 35.20,  'glon': -111.66},
-               {'name': 'E' , 'glat': 48.25,  'glon': -117.12},
-               {'name': 'F' , 'glat': 31.23,  'glon':  -98.30},
-               {'name': 'G' , 'glat': 33.96,  'glon': -107.18},
-               {'name': 'H' , 'glat': 37.23,  'glon': -118.26},
-               {'name': 'I' , 'glat': 33.60,  'glon': -116.45}]
-    }
-]
+with open('sites.yaml', 'r') as f:
+    instruments = yaml.safe_load(f)
 
-# Define FPI Networks
-fpi_groups = [
-    {'name': 'NATION FPI redline',
-     'elev': 45.,
-     'alt' : 250.,
-     'color': 'tomato',
-     'sites': [{'name': 'A', 'glat': 43.27,  'glon': -120.35},
-               {'name': 'A', 'glat': 41.6 ,  'glon': -111.60},
-               {'name': 'A', 'glat': 35.20,  'glon': -111.66},
-               {'name': 'A', 'glat': 40.16,  'glon':  -88.16}]
-    },
-    {'name': 'NATION FPI greenline',
-     'elev': 45.,
-     'alt' : 95.,
-     'color': 'lightgreen',
-     'sites': [{'name': 'A', 'glat': 43.27,  'glon': -120.35},
-               {'name': 'A', 'glat': 41.60,  'glon': -111.6 },
-               {'name': 'A', 'glat': 35.20,  'glon': -111.66}]
-    }
-]
+# Define ASI Networks
+#asi_groups = [
+#    {'name': 'Former MANGO imagers',
+#    'type': 'ASI',
+#    'elev': 15.,
+#    'alt' : 250.,
+#    'color': 'darkgrey',
+#    'sites': [{'name': 'A' , 'glat': 40.80,  'glon': -121.46},
+#              {'name': 'A' , 'glat': 38.11,  'glon':  -96.09},
+#              {'name': 'A' , 'glat': 33.29,  'glon':  -89.38},
+#              {'name': 'A' , 'glat': 45.34,  'glon': -108.91}]
+#    },
+#    {'name': 'MANGO airglow redline',
+#     'elev': 15.,
+#     'alt' : 250.,
+#     'color': 'tomato',
+#     'sites': [{'name': 'A' , 'glat': 43.27,  'glon': -120.35},
+#               {'name': 'B' , 'glat': 38.15,  'glon': -111.18},
+#               {'name': 'C' , 'glat': 41.88,  'glon':  -91.50},
+#               {'name': 'D' , 'glat': 35.20,  'glon':  -82.87},
+#               {'name': 'E' , 'glat': 48.15,  'glon':  -97.66},
+#               {'name': 'F' , 'glat': 37.61,  'glon':  -97.61}]
+#    },
+#    {'name': 'MANGO airglow greenline',
+#     'elev': 15.,
+#     'alt' : 95.,
+#     'color': 'lightgreen',
+#     'sites': [{'name': 'A' , 'glat': 43.27,  'glon': -120.35},
+#               {'name': 'B' , 'glat': 38.15,  'glon': -111.18},
+#               {'name': 'C' , 'glat': 41.60,  'glon': -111.60},
+#               {'name': 'D' , 'glat': 35.20,  'glon': -111.66},
+#               {'name': 'E' , 'glat': 48.25,  'glon': -117.12},
+#               {'name': 'F' , 'glat': 31.23,  'glon':  -98.30},
+#               {'name': 'G' , 'glat': 33.96,  'glon': -107.18},
+#               {'name': 'H' , 'glat': 37.23,  'glon': -118.26},
+#               {'name': 'I' , 'glat': 33.60,  'glon': -116.45}]
+#    }
+#]
+
+## Define FPI Networks
+#fpi_groups = [
+#    {'name': 'NATION FPI redline',
+#     'elev': 45.,
+#     'alt' : 250.,
+#     'color': 'tomato',
+#     'sites': [{'name': 'A', 'glat': 43.27,  'glon': -120.35},
+#               {'name': 'A', 'glat': 41.6 ,  'glon': -111.60},
+#               {'name': 'A', 'glat': 35.20,  'glon': -111.66},
+#               {'name': 'A', 'glat': 40.16,  'glon':  -88.16}]
+#    },
+#    {'name': 'NATION FPI greenline',
+#     'elev': 45.,
+#     'alt' : 95.,
+#     'color': 'lightgreen',
+#     'sites': [{'name': 'A', 'glat': 43.27,  'glon': -120.35},
+#               {'name': 'A', 'glat': 41.60,  'glon': -111.6 },
+#               {'name': 'A', 'glat': 35.20,  'glon': -111.66}]
+#    }
+#]
 
 
 def projected_beam(lat0, lon0, az, el, proj_alt=300.):
@@ -129,14 +133,17 @@ def generate_fpi_beams(site_lat, site_lon, elev, alt):
 # Use the site locations to find an apprpriate center point
 glat_list = list()
 glon_list = list()
-for group in asi_groups:
-    for site in group['sites']:
+
+for network in instruments['ASI']:
+    for site in network['sites']:
         glat_list.append(site['glat'])
         glon_list.append(site['glon'])
-for group in fpi_groups:
-    for site in group['sites']:
+
+for network in instruments['FPI']:
+    for site in network['sites']:
         glat_list.append(site['glat'])
         glon_list.append(site['glon'])
+
 cent_glat = (min(glat_list) + max(glat_list))/2.
 cent_glon = (min(glon_list) + max(glon_list))/2.
 
@@ -149,13 +156,13 @@ ax.gridlines()
 ax.set_extent([-125, -70, 20, 55], crs=ccrs.PlateCarree())
 
 # Add ASI networks to plot
-for network in asi_groups:
+for network in instruments['ASI']:
     for site in network['sites']:
         fov_lat, fov_lon = generate_asi_fov(site['glat'], site['glon'], network['elev'], network['alt'])
         ax.plot(fov_lon, fov_lat, color=network['color'], label=network['name'], linewidth=3, zorder=6.5, transform=ccrs.Geodetic())
 
 # Add FPI networks to plot
-for network in fpi_groups:
+for network in instruments['FPI']:
     for site in network['sites']:
         fov_lat, fov_lon = generate_fpi_beams(site['glat'], site['glon'], network['elev'], network['alt'])
         ax.scatter(fov_lon, fov_lat, color=network['color'], label=network['name'], linewidth=3, s=50, zorder=7, transform=ccrs.Geodetic())
