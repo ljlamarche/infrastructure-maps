@@ -75,6 +75,163 @@ ASI:
         glat: 33.60
         glon: -116.45
 
+  - name: Boston University airglow imagers
+    elev: 15.
+    alt: 95.
+    color: red
+    sites:
+      - name: A
+        glat: 42.64
+        glon: -71.45 
+      - name: A
+        glat: 30.65
+        glon: -104.02
+      - name: A
+        glat: 18.30
+        glon: -66.80 
+      - name: A
+        glat: 5.60
+        glon: -73.52 
+      - name: A
+        glat: -11.95
+        glon: -76.87 
+      - name: A
+        glat: -31.80
+        glon: -69.30 
+      - name: A
+        glat: -34.51
+        glon: -59.40 
+      - name: A
+        glat: -53.79
+        glon: -67.75 
+      - name: A
+        glat: -43.99
+        glon: 170.46 
+      - name: A
+        glat: 45.87
+        glon: 11.53  
+      - name: A
+        glat: -32.37
+        glon: 20.81
+
+  - name: Alaska auroral imagers
+    elev: 15.
+    alt: 250.
+    color: darkblue
+    sites:
+      - name: PKR
+        glat: 65.1366707
+        glon: -147.4515996
+      - name: PKR
+        glat: 64.7801054
+        glon: -141.1981062
+      - name: PKR
+        glat: 68.627491
+        glon: -149.5970859
+
+  - name: THEMIS imaging array
+    elev: 15.
+    alt: 95.
+    color: turquoise
+    sites:
+      - name: A
+        glat: 54.71
+        glon: 246.69
+      - name: A
+        glat: 49.81
+        glon: 285.58
+      - name: A
+        glat: 64.72
+        glon: 250.67
+      - name: A
+        glat: 61.76
+        glon: 238.77
+      - name: A
+        glat: 60.03
+        glon: 248.07
+      - name: A
+        glat: 66.56
+        glon: 214.79
+      - name: A
+        glat: 62.39
+        glon: 214.87
+      - name: A
+        glat: 53.32
+        glon: 299.54
+      - name: A
+        glat: 56.35
+        glon: 265.34
+      - name: A
+        glat: 68.41
+        glon: 226.23
+      - name: A
+        glat: 49.39
+        glon: 277.68
+      - name: A
+        glat: 66.97
+        glon: 199.56
+      - name: A
+        glat: 58.10
+        glon: 291.60
+      - name: A
+        glat: 62.95
+        glon: 204.40
+      - name: A
+        glat: 53.82
+        glon: 237.17
+      - name: A
+        glat: 50.20
+        glon: 263.96
+      - name: A
+        glat: 62.82
+        glon: 267.89
+      - name: A
+        glat: 63.58
+        glon: 249.13
+      - name: A
+        glat: 56.54
+        glon: 280.77
+      - name: A
+        glat: 69.54
+        glon: 266.45
+      - name: A
+        glat: 53.99
+        glon: 259.06
+      - name: A
+        glat: 61.01
+        glon: 224.78
+      - name: A
+        glat: 62.52
+        glon: 245.69
+
+  - name: REGO airglow auroral imagers
+    elev: 15.
+    alt: 250.
+    color: crimson
+    sites:
+      - name: A
+        glat: 9.98
+        glon: 248.16 
+      - name: A
+        glat: 54.72
+        glon: 246.69
+      - name: A
+        glat: 61.76
+        glon: 238.78
+      - name: A
+        glat: 56.38
+        glon: 265.36
+      - name: A
+        glat: 62.81
+        glon: 267.90
+      - name: A
+        glat: 74.73
+        glon: 265.10
+      - name: A
+        glat: 69.54
+        glon: 266.47
+
+
 
 
 FPI:
@@ -110,4 +267,64 @@ FPI:
       - name: A
         glat: 35.20
         glon: -111.66
-  
+
+
+SuperMAG:
+  name: SuperMAG magnetometer Network
+  color: violet
+
+SuperDARN:
+  name: SuperDARN HF radar network
+  color: lightgrey
+  radars:
+    - ksr
+    - kod
+    - ade
+    - cvw
+    - pgr
+    - cly
+
+ISR:
+#  - name: Millstone Hill ISR
+#    elev: 45.
+#    alt: 300.
+#    color: deeppink
+#    glat: 42.6233
+#    glon: -71.4882
+#
+#  - name: Arecibo ISR
+#    elev: 71.
+#    alt: 300.
+#    color: darkorange
+#    glat: 18.34417
+#    glon: -66.75278
+#
+#  - name: Sondrestrom ISR
+#    elev: 45.
+#    alt: 300.
+#    color: darkorchid
+#    glat: 66.9858
+#    glon: -50.945626
+
+  - name: HAARP
+    elev: 60.
+    alt: 300.
+    color: limegreen
+    glat: 62.39265
+    glon: -145.15034
+
+AMISR:
+  - name: Poker Flat ISR
+    radar: PFISR
+    alt: 300.
+    color: gold
+#  - name: Resolute Bay North ISR
+#    radar: RISR-N
+#    alt: 300.
+#    color: deepskyblue
+#  - name: Resolute Bay Canada ISR
+#    radar: RISR-C
+#    alt: 300
+#    color: forestgreen
+
+
