@@ -29,7 +29,7 @@ output_figure = 'ASI_map.png'
 #   there to potentially identify individual sites in the future, or just to 
 #   better keep track of which site different coordinates correspond to.
 
-with open('mango_sites.yaml', 'r') as f:
+with open('sites.yaml', 'r') as f:
     instruments = yaml.safe_load(f)
 
 
@@ -68,6 +68,11 @@ def generate_fpi_beams(site_lat, site_lon, elev, alt):
     return lat[::-1], lon[::-1]
 
 
+def reg_lon(lon, vmin=0., vmax=360.):
+    lon = lon % (vmax-vmin)
+    if lon < 0:
+        lon = 360. + lon
+    return lon
 
 
 # Use the site locations to find an appropriate center point
@@ -77,15 +82,16 @@ glon_list = list()
 for network in instruments['ASI']:
     for site in network['sites']:
         glat_list.append(site['glat'])
-        glon_list.append(site['glon'])
+        glon_list.append(reg_lon(site['glon']))
 
 for network in instruments['FPI']:
     for site in network['sites']:
         glat_list.append(site['glat'])
-        glon_list.append(site['glon'])
+        glon_list.append(reg_lon(site['glon']))
 
 cent_glat = (min(glat_list) + max(glat_list))/2.
 cent_glon = (min(glon_list) + max(glon_list))/2.
+print(cent_glat, cent_glon)
 
 # Set up figure
 fig = plt.figure(figsize=(10,10))
@@ -96,17 +102,22 @@ ax.gridlines()
 #ax.set_extent([-125, -70, 20, 55], crs=ccrs.PlateCarree())
 #ax.set_extent([-125, -70, 20, 55], crs=ccrs.PlateCarree())
 
-# Add ASI networks to plot
+# Plot ASI networks
 for network in instruments['ASI']:
     for site in network['sites']:
         fov_lat, fov_lon = generate_asi_fov(site['glat'], site['glon'], network['elev'], network['alt'])
         ax.plot(fov_lon, fov_lat, color=network['color'], label=network['name'], linewidth=3, zorder=6.5, transform=ccrs.Geodetic())
 
-# Add FPI networks to plot
+# Plot FPI networks
 for network in instruments['FPI']:
     for site in network['sites']:
         fov_lat, fov_lon = generate_fpi_beams(site['glat'], site['glon'], network['elev'], network['alt'])
         ax.scatter(fov_lon, fov_lat, color=network['color'], label=network['name'], linewidth=3, s=50, zorder=7, transform=ccrs.Geodetic())
+
+# Plot ISRs
+for site in instruments['ISR']:
+    fov_lat, fov_lon = generate_asi_fov(site['glat'], site['glon'], site['elev'], site['alt'])
+    ax.plot(fov_lon, fov_lat, color=site['color'], label=site['name'], linewidth=3, zorder=6.5, transform=ccrs.Geodetic())
 
 # Add legend to plot
 handles, labels = ax.get_legend_handles_labels()
