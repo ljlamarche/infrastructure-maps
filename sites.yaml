@@ -318,13 +318,21 @@ AMISR:
     radar: PFISR
     alt: 300.
     color: gold
-#  - name: Resolute Bay North ISR
-#    radar: RISR-N
-#    alt: 300.
-#    color: deepskyblue
-#  - name: Resolute Bay Canada ISR
-#    radar: RISR-C
-#    alt: 300
-#    color: forestgreen
+    glat: 65.12992
+    glon: -147.47104
+
+  - name: Resolute Bay North ISR
+    radar: RISR-N
+    alt: 300.
+    color: deepskyblue
+    glat: 74.72955
+    glon: -94.90576
+
+  - name: Resolute Bay Canada ISR
+    radar: RISR-C
+    alt: 300
+    color: forestgreen
+    glat: 74.72955
+    glon: -94.90576
 
 

@@ -68,6 +68,19 @@ def generate_fpi_beams(site_lat, site_lon, elev, alt):
     return lat[::-1], lon[::-1]
 
 
+def generate_amisr_fov(site_lat, site_lon, radar):
+    filename = os.path.join(os.path.dirname(__file__), 'site_data', '{}GratingLimits.txt'.format(radar.replace('-','').lower()))
+    az, el = np.loadtxt(filename, usecols=[0,1], unpack=True)
+    az = np.deg2rad(az)
+    el = np.deg2rad(el)
+    #az = data[:,0]*np.pi/180.
+    #el = data[:,1]*np.pi/180.
+
+    lat, lon, alt = projected_beam(site_lat, site_lon, az, el, proj_alt=450)
+    return lat[::-1], lon[::-1]
+
+
+
 def reg_lon(lon, vmin=0., vmax=360.):
     lon = lon % (vmax-vmin)
     if lon < 0:
@@ -117,6 +130,11 @@ for network in instruments['FPI']:
 # Plot ISRs
 for site in instruments['ISR']:
     fov_lat, fov_lon = generate_asi_fov(site['glat'], site['glon'], site['elev'], site['alt'])
+    ax.plot(fov_lon, fov_lat, color=site['color'], label=site['name'], linewidth=3, zorder=6.5, transform=ccrs.Geodetic())
+
+# Plot AMISRs
+for site in instruments['AMISR']:
+    fov_lat, fov_lon = generate_amisr_fov(site['glat'], site['glon'], site['radar'])
     ax.plot(fov_lon, fov_lat, color=site['color'], label=site['name'], linewidth=3, zorder=6.5, transform=ccrs.Geodetic())
 
 # Add legend to plot
