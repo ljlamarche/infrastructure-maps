@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import yaml
+import pydarn
 
 # Specify where to find cartopy backgrounds locally
 # THIS WILL HAVE TO BE CHANGED FOR EACH USER
@@ -80,6 +81,32 @@ def generate_amisr_fov(site_lat, site_lon, radar):
     return lat[::-1], lon[::-1]
 
 
+def get_mag_sites():
+    #self.color = color
+    filename = os.path.join(os.path.dirname(__file__), 'site_data', 'SuperMAG_sites.txt')
+    lon, lat = np.loadtxt(filename, skiprows=44, usecols=(1,2), unpack=True)
+    #self.sites = np.array([data[:,1],data[:,0],np.zeros(data.shape[0])]).T
+    return lat, lon
+
+
+def generate_sd_fov(radar):
+
+    hdw_data = pydarn.read_hdw_file(radar)
+    stid = hdw_data.stid
+    #radar_info = pydarn.SuperDARNRadars.radars
+
+    #if radars:
+    #    self.sites = [SuperDARN(stid) for stid, info in radar_info.items() if info.hardware_info.abbrev in radars]
+    #else:
+    #    self.sites = [SuperDARN(stid) for stid in radar_info.keys()]
+
+    #gate_lat, gate_lon = pydarn.Coords.GEOGRAPHIC(stid)
+    #print(pydarn.RadarID.CLY)
+    gate_lat, gate_lon = pydarn.Coords.GEOGRAPHIC(pydarn.RadarID.CLY)
+    lat = np.concatenate((gate_lat[0,:],gate_lat[:,-1],gate_lat[-1,::-1],gate_lat[::-1,0]))
+    lon = np.concatenate((gate_lon[0,:],gate_lon[:,-1],gate_lon[-1,::-1],gate_lon[::-1,0]))
+    return lat, lon
+
 
 def reg_lon(lon, vmin=0., vmax=360.):
     lon = lon % (vmax-vmin)
@@ -136,6 +163,15 @@ for site in instruments['ISR']:
 for site in instruments['AMISR']:
     fov_lat, fov_lon = generate_amisr_fov(site['glat'], site['glon'], site['radar'])
     ax.plot(fov_lon, fov_lat, color=site['color'], label=site['name'], linewidth=3, zorder=6.5, transform=ccrs.Geodetic())
+
+# Plot mag sites
+fov_lat, fov_lon = get_mag_sites()
+ax.scatter(fov_lon, fov_lat, color=instruments['SuperMAG']['color'], transform=ccrs.Geodetic())
+
+# Plot SuperDARN sites
+for site in instruments['SuperDARN']['radars']:
+    fov_lat, fov_lon = generate_sd_fov(site)
+    ax.plot(fov_lon, fov_lat, color=instruments['SuperDARN']['color'], transform=ccrs.Geodetic())
 
 # Add legend to plot
 handles, labels = ax.get_legend_handles_labels()
