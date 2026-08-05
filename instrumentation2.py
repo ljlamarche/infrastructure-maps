@@ -73,9 +73,16 @@ def ASI(ax, glat=None, glon=None, elev=None, alt=None, **plotting_params):
 
     fov_lat, fov_lon = generate_asi_fov(glat, glon, elev, alt)
 
-    nonplotkw = ['name','sites']
+    if 'fill' in plotting_params:
+        fill_params = plotting_params['fill']
+        if 'color' not in fill_params:
+            fill_params['color'] = plotting_params['color']
+        ax.fill(fov_lon, fov_lat, transform=ccrs.Geodetic(), **fill_params)
+
+    nonplotkw = ['name','sites','fill']
     for kw in nonplotkw:
-        del plotting_params[kw]
+        if kw in plotting_params:
+            del plotting_params[kw]
 
     ax.plot(fov_lon, fov_lat, transform=ccrs.Geodetic(), **plotting_params)
 
@@ -92,13 +99,39 @@ def FPI(ax, glat=None, glon=None, elev=None, alt=None, **plotting_params):
     ax.scatter(fov_lon, fov_lat, transform=ccrs.Geodetic(), **plotting_params)
 
 
+def SDI(ax, glat=None, glon=None, elev=None, alt=None, **plotting_params):
+
+    fov_lat, fov_lon = generate_asi_fov(glat, glon, elev, alt)
+
+    if 'fill' in plotting_params:
+        fill_params = plotting_params['fill']
+        if 'color' not in fill_params:
+            fill_params['color'] = plotting_params['color']
+        ax.fill(fov_lon, fov_lat, transform=ccrs.Geodetic(), **fill_params)
+
+    nonplotkw = ['name','sites','fill']
+    for kw in nonplotkw:
+        if kw in plotting_params:
+            del plotting_params[kw]
+
+    ax.plot(fov_lon, fov_lat, transform=ccrs.Geodetic(), **plotting_params)
+
+
+
 # Plot ISRs
 def ISR(ax, glat=None, glon=None, elev=None, alt=None, **plotting_params):
     fov_lat, fov_lon = generate_asi_fov(glat, glon, elev, alt)
 
-    nonplotkw = ['name']
+    if 'fill' in plotting_params:
+        fill_params = plotting_params['fill']
+        if 'color' not in fill_params:
+            fill_params['color'] = plotting_params['color']
+        ax.fill(fov_lon, fov_lat, transform=ccrs.Geodetic(), **fill_params)
+
+    nonplotkw = ['name', 'fill']
     for kw in nonplotkw:
-        del plotting_params[kw]
+        if kw in plotting_params:
+            del plotting_params[kw]
 
     ax.plot(fov_lon, fov_lat, transform=ccrs.Geodetic(), **plotting_params)
 
@@ -108,9 +141,16 @@ def AMISR(ax, glat=None, glon=None, alt=None, radar=None, **plotting_params):
 #for site in instruments['AMISR']:
     fov_lat, fov_lon = generate_amisr_fov(glat, glon, alt, radar)
 
-    nonplotkw = ['name']
+    if 'fill' in plotting_params:
+        fill_params = plotting_params['fill']
+        if 'color' not in fill_params:
+            fill_params['color'] = plotting_params['color']
+        ax.fill(fov_lon, fov_lat, transform=ccrs.Geodetic(), **fill_params)
+
+    nonplotkw = ['name','fill']
     for kw in nonplotkw:
-        del plotting_params[kw]
+        if kw in plotting_params:
+            del plotting_params[kw]
 
     ax.plot(fov_lon, fov_lat, transform=ccrs.Geodetic(), **plotting_params)
 
@@ -128,8 +168,15 @@ def SuperMAG(ax, **plotting_params):
 def SuperDARN(ax, name=None, **plotting_params):
     fov_lat, fov_lon = generate_sd_fov(name)
 
-    nonplotkw = ['sites']
+    if 'fill' in plotting_params:
+        fill_params = plotting_params['fill']
+        if 'color' not in fill_params:
+            fill_params['color'] = plotting_params['color']
+        ax.fill(fov_lon, fov_lat, transform=ccrs.Geodetic(), **fill_params)
+
+    nonplotkw = ['sites','fill']
     for kw in nonplotkw:
-        del plotting_params[kw]
+        if kw in plotting_params:
+            del plotting_params[kw]
 
     ax.plot(fov_lon, fov_lat, transform=ccrs.Geodetic(), **plotting_params)

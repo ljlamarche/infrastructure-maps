@@ -20,10 +20,10 @@ import os
 os.environ['CARTOPY_USER_BACKGROUNDS'] = '/Users/e30737/Desktop/Data/cartopy_background'
 
 # Specify output figure file name
-output_figure = 'ASI_map.png'
+output_figure = 'AK_map.png'
 
 # Read in sites file which specifies instruments
-with open('sites.yaml', 'r') as f:
+with open('ak_sites.yaml', 'r') as f:
     instruments = yaml.safe_load(f)
 
 print(instruments.keys())
@@ -53,19 +53,22 @@ print(instruments.keys())
 #
 #cent_glat = (min(glat_list) + max(glat_list))/2.
 #cent_glon = (min(glon_list) + max(glon_list))/2.
-cent_glat = 42.
-cent_glon = 250.
+#cent_glat = 50.
+#cent_glon = 250.
 
+# Centeral Alaska
+cent_glat = 65.5
+cent_glon = -147.7
 
 
 # Set up figure
 fig = plt.figure(figsize=(10,10))
-proj = ccrs.AzimuthalEquidistant(central_longitude=cent_glon, central_latitude=cent_glat)
+proj = ccrs.Orthographic(central_longitude=cent_glon, central_latitude=cent_glat)
 ax = plt.subplot(111, projection=proj)
-ax.coastlines(resolution='50m',zorder=2)
+ax.coastlines(resolution='50m',zorder=0.5)
 ax.gridlines()
-ax.set_extent([-155, -70, 20, 75], crs=ccrs.PlateCarree())
-#ax.set_extent([-125, -70, 20, 55], crs=ccrs.PlateCarree())
+#ax.set_extent([-155, -60, 20, 80], crs=ccrs.PlateCarree())
+ax.set_extent([-170, -125, 50, 75], crs=ccrs.PlateCarree())
 
 # Add all instruments from sites.yaml
 for inst_type, values in instruments.items():
