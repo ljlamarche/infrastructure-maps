@@ -1,3 +1,7 @@
+GENERAL:
+  output_file: NSF_facilities.png
+  map_center: [50., 250.]
+  map_extent: [-155, -60, 20, 80]
 
 ASI:
   default:
@@ -298,7 +302,7 @@ SDI:
     - name: Alaska SDI sites
       elev: 30.
       alt: 110.
-      color: mediumslateblue
+      color: maroon
       sites:
         - name: ABK
           glat: 68.34
@@ -383,19 +387,19 @@ ISR:
       glat: 42.6233
       glon: -71.4882
   
-    #- name: Arecibo ISR
-    #  elev: 71.
-    #  alt: 300.
-    #  color: darkorange
-    #  glat: 18.34417
-    #  glon: -66.75278
+    - name: Arecibo ISR
+      elev: 71.
+      alt: 300.
+      color: orangered
+      glat: 18.34417
+      glon: -66.75278
   
-    #- name: Sondrestrom ISR
-    #  elev: 45.
-    #  alt: 300.
-    #  color: darkorchid
-    #  glat: 66.9858
-    #  glon: -50.945626
+    - name: Sondrestrom ISR
+      elev: 45.
+      alt: 300.
+      color: darkgreen
+      glat: 66.9858
+      glon: -50.945626
   
     - name: HAARP
       elev: 60.
