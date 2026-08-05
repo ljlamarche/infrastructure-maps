@@ -5,117 +5,138 @@ ASI:
     alt: 95.
     color: grey
   networks:
-    - name: Former MANGO imagers
-      elev: 15.
-      alt : 250.
-      color: darkgrey
-      sites: 
-        - name: A
-          glat: 40.80
-          glon: -121.46
-        - name: B
-          glat: 38.11
-          glon:  -96.09
-        - name: C
-          glat: 33.29
-          glon:  -89.38
-        - name: D
-          glat: 45.34
-          glon: -108.91
+    #- name: Former MANGO imagers
+    #  elev: 15.
+    #  alt : 250.
+    #  color: darkgrey
+    #  sites: 
+    #    - name: HCO
+    #      glat: 40.80
+    #      glon: -121.46
+    #    - name: MDK
+    #      glat: 38.11
+    #      glon:  -96.09
+    #    - name: FRC
+    #      glat: 33.29
+    #      glon:  -89.38
+    #    - name: BRG
+    #      glat: 45.34
+    #      glon: -108.91
     - name: MANGO airglow redline
       elev: 15.
       alt : 250.
       color: tomato
       sites: 
-        - name: A
+        - name: CVO
           glat: 43.27
           glon: -120.35
-        - name: B
+        - name: CFS
           glat: 38.15
           glon: -111.18
-        - name: C
+        - name: EIO
           glat: 41.88
           glon:  -91.50
-        - name: D
+        - name: PAR
           glat: 35.20
           glon:  -82.87
-        - name: E
+        - name: MTO
           glat: 48.15
           glon:  -97.66
-        - name: F
+        - name: LAO
           glat: 37.61
           glon:  -97.61
+        #- name: KSI
+        #  glat: 28.28
+        #  glon: -81.40
     - name: MANGO airglow greenline
       elev: 15.
       alt : 95.
       color: lightgreen
       sites:
-        - name: A
+        - name: CVO
           glat: 43.27
           glon: -120.35
-        - name: B
+        - name: CFS
           glat: 38.15
           glon: -111.18
-        - name: C
+        - name: BLO
           glat: 41.60
           glon: -111.60
-        - name: D
-          glat: 35.20
-          glon: -111.66
-        - name: E
+       # - name: D
+       #   glat: 35.20
+       #   glon: -111.66
+        - name: NEW
           glat: 48.25
           glon: -117.12
-        - name: F
+        - name: BDR
           glat: 31.23
           glon:  -98.30
-        - name: G
+        - name: MRO
           glat: 33.96
           glon: -107.18
-        - name: H
+        - name: OVI
           glat: 37.23
           glon: -118.26
-        - name: I
+        - name: PFO
           glat: 33.60
           glon: -116.45
+        - name: LOW
+          glat: 34.75
+          glon: -111.42
 
-#  - name: Boston University airglow imagers
-#    elev: 15.
-#    alt: 95.
-#    color: red
-#    sites:
-#      - name: A
-#        glat: 42.64
-#        glon: -71.45 
-#      - name: A
-#        glat: 30.65
-#        glon: -104.02
-#      - name: A
-#        glat: 18.30
-#        glon: -66.80 
-#      - name: A
-#        glat: 5.60
-#        glon: -73.52 
-#      - name: A
-#        glat: -11.95
-#        glon: -76.87 
-#      - name: A
-#        glat: -31.80
-#        glon: -69.30 
-#      - name: A
-#        glat: -34.51
-#        glon: -59.40 
-#      - name: A
-#        glat: -53.79
-#        glon: -67.75 
-#      - name: A
-#        glat: -43.99
-#        glon: 170.46 
-#      - name: A
-#        glat: 45.87
-#        glon: 11.53  
-#      - name: A
-#        glat: -32.37
-#        glon: 20.81
+    - name: BU airglow redline
+      elev: 15.
+      alt: 250.
+      color: hotpink
+      sites:
+        - name: MH
+          glat: 42.64
+          glon: -71.45 
+        - name: TX
+          glat: 30.65
+          glon: -104.02
+        - name: Culebra
+          glat: 18.30
+          glon: -65.28 
+        #- name: D
+        #  glat: 5.60
+        #  glon: -73.52 
+        #- name: E
+        #  glat: -11.95
+        #  glon: -76.87 
+        #- name: F
+        #  glat: -31.80
+        #  glon: -69.30 
+        #- name: G
+        #  glat: -34.51
+        #  glon: -59.40 
+        #- name: H
+        #  glat: -53.79
+        #  glon: -67.75 
+        #- name: I
+        #  glat: -43.99
+        #  glon: 170.46 
+        #- name: J
+        #  glat: 45.87
+        #  glon: 11.53  
+        #- name: K
+        #  glat: -32.37
+        #  glon: 20.81
+
+    - name: BU airglow greenline
+      elev: 15.
+      alt: 95.
+      color: yellow
+      sites:
+        - name: MH
+          glat: 42.64
+          glon: -71.45 
+        - name: TX
+          glat: 30.65
+          glon: -104.02
+        - name: Culebra
+          glat: 18.30
+          glon: -65.28 
 
     - name: Alaska auroral imagers
       elev: 15.
@@ -207,7 +228,7 @@ ASI:
           glat: 62.52
           glon: 245.69
   
-    - name: REGO airglow auroral imagers
+    - name: REGO airglow redline
       elev: 15.
       alt: 250.
       color: crimson
@@ -272,48 +293,109 @@ FPI:
           glat: 35.20
           glon: -111.66
 
+SDI:
+  networks:
+    - name: Alaska SDI sites
+      elev: 30.
+      alt: 110.
+      color: mediumslateblue
+      sites:
+        - name: ABK
+          glat: 68.34
+          glon: 18.82
+        #- name: AKN
+        #  glat:
+        #  glon: 
+        - name: EAG
+          glat: 64.78
+          glon: -141.20
+        - name: KEV
+          glat: 69.75
+          glon: 27.01
+        - name: MCM
+          glat: -77.52
+          glon: 161.91
+        - name: PKR
+          glat: 65.1366707
+          glon: -147.4515996
+        - name: SPO
+          glat: -90.
+          glon: 0.
+        - name: TLK
+          glat: 68.63
+          glon: -149.60
 
 SuperMAG:
   sites:
-    - name: SuperMAG magnetometer Network
+    - name: SuperMAG sites
       color: violet
+      s: 5
 
 SuperDARN:
   networks:
-    - name: SuperDARN HF radar network
+    - name: SuperDARN HF radars
       color: lightgrey
+      fill:
+        alpha: 0.1
+        zorder: 1
       sites:
-        - name: ksr
-        - name: kod
         - name: ade
-        - name: cvw
-        - name: pgr
+        - name: adw
+        - name: bks
         - name: cly
+        - name: cve
+        - name: cvw
+        - name: fhe
+        - name: fhw
+        - name: gbr
+        - name: hje
+        - name: hjw
+        - name: hkw
+        - name: hok
+        - name: ice
+        - name: icw
+        - name: inv
+        - name: jme
+        - name: kap
+        - name: kod
+        - name: ksr
+        - name: lje
+        - name: ljw
+        - name: lyr
+        - name: pgr
+        - name: rkn
+        - name: sas
+        - name: sze
+        - name: szw
+        - name: wal
 
 ISR:
   default:
     linewidth: 3
+    fill:
+      alpha: 0.3
+      zorder: 1
   sites:
     - name: Millstone Hill ISR
       elev: 45.
       alt: 300.
-      color: deeppink
+      color: deepskyblue
       glat: 42.6233
       glon: -71.4882
   
-    - name: Arecibo ISR
-      elev: 71.
-      alt: 300.
-      color: darkorange
-      glat: 18.34417
-      glon: -66.75278
+    #- name: Arecibo ISR
+    #  elev: 71.
+    #  alt: 300.
+    #  color: darkorange
+    #  glat: 18.34417
+    #  glon: -66.75278
   
-    - name: Sondrestrom ISR
-      elev: 45.
-      alt: 300.
-      color: darkorchid
-      glat: 66.9858
-      glon: -50.945626
+    #- name: Sondrestrom ISR
+    #  elev: 45.
+    #  alt: 300.
+    #  color: darkorchid
+    #  glat: 66.9858
+    #  glon: -50.945626
   
     - name: HAARP
       elev: 60.
@@ -323,6 +405,11 @@ ISR:
       glon: -145.15034
 
 AMISR:
+  default:
+    linewidth: 3
+    fill:
+      alpha: 0.3
+      zorder: 1
   sites:
     - name: Poker Flat ISR
       radar: PFISR
@@ -334,14 +421,14 @@ AMISR:
     - name: Resolute Bay North ISR
       radar: RISR-N
       alt: 300.
-      color: deepskyblue
+      color: darkorange
       glat: 74.72955
       glon: -94.90576
   
     - name: Resolute Bay Canada ISR
       radar: RISR-C
       alt: 300
-      color: forestgreen
+      color: darkorchid
       glat: 74.72955
       glon: -94.90576
 
